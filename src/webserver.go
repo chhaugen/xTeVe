@@ -135,6 +135,10 @@ func Stream(w http.ResponseWriter, r *http.Request) {
 	if Settings.UDPxy != "" && strings.HasPrefix(streamInfo.URL, "udp://@") {
 		streamInfo.URL = fmt.Sprintf("http://%s/udp/%s/", Settings.UDPxy, strings.TrimPrefix(streamInfo.URL, "udp://@"))
 	}
+	
+	if Settings.UDPxy != "" && strings.HasPrefix(streamInfo.URL, "rtp://@") {
+		streamInfo.URL = fmt.Sprintf("http://%s/rtp/%s/", Settings.UDPxy, strings.TrimPrefix(streamInfo.URL, "rtp://@"))
+	}
 
 	switch Settings.Buffer {
 
